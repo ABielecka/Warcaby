@@ -195,7 +195,7 @@ bool Warcaby::handleEvents()
 	return false;
 }
 
-//Przeliczam wspó³rzêdne myszki na wspó³rzêbne planszy
+//Przeliczam wspÃ³Å‚rzÄ™dne myszki na wspÃ³Å‚rzÄ™dne planszy
 int Warcaby::mouse()
 {
 	sf::Vector2i pozycja;
