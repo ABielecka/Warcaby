@@ -1,6 +1,6 @@
 #include "Plansza.h"
 
-/* Kordynaty ruchu z do ~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* Koordynaty ruchu z do ~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 Coords::Coords(int t_x1, int t_y1, int t_x2, int t_y2) {
 	x1 = t_x1;
 	y1 = t_y1;
@@ -17,7 +17,7 @@ bool Coords::operator!= (const Coords& cord) {
 }
 
 
-/* PoszczegÛlne ruchy z do ~~~~~~~~~~~~~~~~~~~~~~~ */
+/* Poszczeg√≥lne ruchy z do ~~~~~~~~~~~~~~~~~~~~~~~ */
 Move::Move(int x1, int y1, int x2, int y2) {
 	coords.emplace_back(x1, y1, x2, y2);
 }
@@ -80,7 +80,7 @@ void Plansza::ustaw()
 	}
 }
 
-//Sprawdzam czy bicie dla ca≥ego koloru
+//Sprawdzam czy bicie dla ca≈Çego koloru
 bool Plansza::sprawdzCzyBicie(Color kolor)
 {
 	for (int i = 0; i < 8; i++)
@@ -109,7 +109,7 @@ bool Plansza::sprawdzCzyBicie(int x, int y)
 {
 	Color kolor = (plansza[x][y] == BLACK_PION || plansza[x][y] == BLACK_KING) ? BLACK : RED;
 
-	//sprawdzam dla pionkÛw
+	//sprawdzam dla pionk√≥w
 	if (plansza[x][y] == RED_PION || plansza[x][y] == BLACK_PION)
 	{
 		for (int a : { -1, 1 })
@@ -136,7 +136,8 @@ bool Plansza::sprawdzCzyBicie(int x, int y)
 			}
 		}
 	}
-	//sprawdzam dla krÛlowej
+	
+	//sprawdzam dla kr√≥lowej
 	else if (plansza[x][y] == RED_KING || plansza[x][y] == BLACK_KING)
 	{
 		for (int a : {-1, 1})
@@ -233,7 +234,7 @@ std::vector< Move > Plansza::pobierzMozliweRuchy(int x, int y)
 	std::vector< Move > ruchy;
 	bool czyPionMaBicie;
 
-	//Jeúli pole na planszy puste zwracam pusty wektor
+	//Je≈ºli pole na planszy puste zwracam pusty wektor
 	if (plansza[x][y] == EMPTY)
 		return ruchy;
 
@@ -245,14 +246,14 @@ std::vector< Move > Plansza::pobierzMozliweRuchy(int x, int y)
 		kolor = RED;
 	}
 
-	//Jeúli dla ruchu wybranym pionem nie ma bicia sprawdzCzyBicie(x, y) -> false
-	//natomiast dla jakiegoú innego piona jest bicie sprawdzCzyBicie(kolor) -> true
-	//to zwracam pusty wektor poniewaø bicie jest obowiπzkowe
+	//Je≈ºli dla ruchu wybranym pionem nie ma bicia sprawdzCzyBicie(x, y) -> false
+	//natomiast dla jakiego≈ì innego piona jest bicie sprawdzCzyBicie(kolor) -> true
+	//to zwracam pusty wektor poniewa≈º bicie jest obowiƒÖzkowe
 	czyPionMaBicie = sprawdzCzyBicie(x, y);
 	if (sprawdzCzyBicie(kolor) != czyPionMaBicie)
 		return ruchy;
 
-	//Sprawdzam dla pionÛw
+	//Sprawdzam dla pion√≥w
 	if (plansza[x][y] == RED_PION || plansza[x][y] == BLACK_PION)
 	{
 		//Bez bicia
@@ -266,7 +267,7 @@ std::vector< Move > Plansza::pobierzMozliweRuchy(int x, int y)
 				if (plansza[x + xdir][y - 1] == EMPTY)
 					ruchy.push_back(Move(x, y, x + xdir, y - 1));
 		}
-		//Jeúli dostÍpne bicie
+		//Je≈ºli dostƒôpne bicie
 		else
 		{
 			for (int a : {-1, 1}) {
@@ -289,19 +290,19 @@ std::vector< Move > Plansza::pobierzMozliweRuchy(int x, int y)
 			}
 		}
 	}
-	//Sprawdzam dla krÛlowej
+	//Sprawdzam dla kr√≥lowej
 	else
 	{
-		//sprawdzam czy krÛlowa ma bicie
+		//sprawdzam czy kr√≥lowa ma bicie
 		czyPionMaBicie = sprawdzCzyBicie(x, y);
-		//sprawdzam dla kaødego kierunku
+		//sprawdzam dla ka≈ºdego kierunku
 		for (int a : {-1, 1})
 		{
 			for (int b : {-1, 1})
 			{
 				int i = x + a;
 				int j = y + b;
-				//poruszaj siÍ aø pojawi siÍ coú po drodze
+				//poruszaj siƒô a≈º pojawi siƒô co≈õ po drodze
 				while (i >= 0 && j >= 0 && i <= 7 && j <= 7)
 				{
 					if (plansza[i][j] == EMPTY)
@@ -312,12 +313,12 @@ std::vector< Move > Plansza::pobierzMozliweRuchy(int x, int y)
 					//gra kolor czarny
 					else if (kolor == BLACK)
 					{
-						//jeúli na drodze pion tego samego koloru
+						//je≈ºli na drodze pion tego samego koloru
 						if (plansza[i][j] == BLACK_KING || plansza[i][j] == BLACK_PION)
 						{
 							break;
 						}
-						//na drodze pojawi≥ siÍ pion przeciwnego koloru	
+						//na drodze pojawi≈Ç siƒô pion przeciwnego koloru	
 						else if ((plansza[i][j] == RED_KING || plansza[i][j] == RED_PION) && czyPionMaBicie)
 						{
 							do {
@@ -342,12 +343,12 @@ std::vector< Move > Plansza::pobierzMozliweRuchy(int x, int y)
 					//gra kolor czerwony
 					else
 					{
-						//jeúli na drodze pion tego samego koloru
+						//je≈ºli na drodze pion tego samego koloru
 						if (plansza[i][j] == RED_KING || plansza[i][j] == RED_PION)
 						{
 							break;
 						}
-						//na drodze pojawi≥ siÍ pion przeciwnego koloru	
+						//na drodze pojawi≈Ç si√™ pion przeciwnego koloru	
 						else if ((plansza[i][j] == BLACK_KING || plansza[i][j] == BLACK_PION) && czyPionMaBicie)
 						{
 							do {
@@ -388,7 +389,7 @@ void Plansza::capture(int x1, int y1, int x2, int y2) {
 	}
 }
 
-//zwraca 0 jeúli b≥Ídny ruch, 1 jeúli koniec ruchÛw, 2 jeúli jest jeszcze ruch
+//zwraca 0 je≈ºli b≈Çƒôdny ruch, 1 je≈ºli koniec ruch√≥w, 2 je≈ºli jest jeszcze ruch
 int Plansza::ruch(Coords m) {
 	Color color = (plansza[m.x1][m.y1] == RED_KING || plansza[m.x1][m.y1] == RED_PION) ? RED : BLACK;
 	return ruch(m.x1, m.y1, m.x2, m.y2, color);
@@ -410,20 +411,20 @@ int Plansza::ruch(int x1, int y1, int x2, int y2, Color kolor)
 		return 0;
 
 	bool czyBicie = false;
-	//jeúli dany ruch dla tego pionka jest wykonalny
+	//je≈ºli dany ruch dla tego pionka jest wykonalny
 	std::vector< Move > aa = pobierzMozliweRuchy(x1, y1);
 	for (auto& move : pobierzMozliweRuchy(x1, y1))
 	{
 		if (move == Move(x1, y1, x2, y2))
 		{
-			//Jesli ruch zawiera bicie
+			//Je≈õli ruch zawiera bicie
 			if (sprawdzCzyBicie(kolor)) {
 				capture(x1, y1, x2, y2);
 				czyBicie = true;
 			}
 			plansza[x2][y2] = plansza[x1][y1];
 			plansza[x1][y1] = EMPTY;
-			// Jeúli nadal jest bicie dla tego piona
+			// Je≈ºli nadal jest bicie dla tego piona
 			if (czyBicie && sprawdzCzyBicie(x2, y2))
 				return 2;
 			else if (((kolor == RED) && x2 == 7) || ((kolor == BLACK) && x2 == 0))
@@ -435,7 +436,7 @@ int Plansza::ruch(int x1, int y1, int x2, int y2, Color kolor)
 	return 0;
 }
 
-// zwraca 0 jeúli gra kontynuowana, 1 jeúli czerwone wygra≥y, 2 jeúli czarne wygra≥y, -1 jeúli remis 
+// zwraca 0 je≈ºli gra kontynuowana, 1 je≈ºli czerwone wygra≈Çy, 2 je≈ìli czarne wygra≈Çy, -1 je≈ìli remis 
 int Plansza::sprawdzStanGry(Color gracz)
 {
 	int redPawns{}, blackPawns{}, redKings{}, blackKings{};
@@ -528,7 +529,7 @@ int Plansza::funkcjaOceniajacaKrawedziowa(int x, int y)
 	}
 }
 
-//Zlicza iloúÊ pionkÛw i krÛlowych pion 2 punkty, krÛlowa 5 punktÛw
+//Zlicza ilo≈õƒá pionk√≥w i kr√≥lowych pion 2 punkty, kr√≥lowa 5 punkt√≥w
 int Plansza::funkcjaOceniajacaPionkowa(int x, int y)
 {
 	switch (plansza[x][y]) {
@@ -554,7 +555,7 @@ int Plansza::funkcjaOceniajacaCzyBicie(int x, int y)
 	return punkty;
 }
 
-//Punkty za Poziomy II +1 punkt, III +3 punkty, IV +10 punktÛw
+//Punkty za Poziomy II +1 punkt, III +3 punkty, IV +10 punkt√≥w
 int Plansza::funkcjaOceniajacaPoziomy(int x, int y)
 {
 	if (plansza[x][y] == EMPTY)
@@ -562,30 +563,30 @@ int Plansza::funkcjaOceniajacaPoziomy(int x, int y)
 
 	if (plansza[x][y] == RED_PION)
 	{
-		if (x >= 2 && x <= 3)        //II poziom (3,4 rzπd dla czerwonych)
+		if (x >= 2 && x <= 3)        //II poziom (3,4 rzƒÖd dla czerwonych)
 		{
 			return 1;
 		}
-		if (x >= 4 && x <= 5)        //III poziom (5,6 rzπd)
+		if (x >= 4 && x <= 5)        //III poziom (5,6 rzƒÖd)
 		{
 			return 3;
 		}
-		if (x >= 6 && x <= 7)        //IV poziom (7,8 rzπd)
+		if (x >= 6 && x <= 7)        //IV poziom (7,8 rzƒÖd)
 		{
 			return 10;
 		}
 	}
 	else
 	{
-		if (x >= 4 && x <= 5)        //II poziom (3,4 rzπd dla czarnych)
+		if (x >= 4 && x <= 5)        //II poziom (3,4 rzƒÖd dla czarnych)
 		{
 			return 1;
 		}
-		if (x >= 2 && x <= 3)        //III poziom (5,6 rzπd)
+		if (x >= 2 && x <= 3)        //III poziom (5,6 rzƒÖd)
 		{
 			return 3;
 		}
-		if (x >= 0 && x <= 1)        //IV poziom (7,8 rzπd)
+		if (x >= 0 && x <= 1)        //IV poziom (7,8 rzƒÖd)
 		{
 			return 10;
 		}
@@ -614,7 +615,7 @@ int Plansza::funkcjaOceniajacaTrzyObszary(int x, int y)
 	}
 }
 
-//zwraca wartoúÊ w zaleønoúci od stanu gry i sumy wartoúci pÛl
+//zwraca warto≈õƒá w zale≈ºno≈õci od stanu gry i sumy warto≈õci p√≥l
 int Plansza::funkcjaOceniajacaPlansza(Color gracz)
 {
 	int black{}, red{};
