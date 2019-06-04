@@ -5,9 +5,9 @@
 #include <memory>
 #include "Plansza.h"
 
-// element do budowy drzewa przechowujπcego ruchy do okreúlonego poziomu
-// Konstruktor elementu jest funkcja rekurencyjna, ktÛra wywo≥uje sie, 
-// az do osiagniecia maksymalnej g≥ebokosci drzewa lub zakoÒczenia gry
+// element do budowy drzewa przechowujƒÖcego ruchy do okre≈õlonego poziomu
+// Konstruktor elementu jest funkcja rekurencyjna, kt√≥ra wywo≈Çuje sie, 
+// az do osiagniecia maksymalnej g≈Çebokosci drzewa lub zako≈Ñczenia gry
 class Node {
 public:
 	Color kolor;
@@ -24,7 +24,7 @@ public:
 int max(int a, int b);
 int min(int a, int b);
 
-//algorytm minmax, wybiera najlepszy ruch dla wyliczonych wartoúci
+//algorytm minmax, wybiera najlepszy ruch dla wyliczonych warto≈ìci
 int minimax(Node& node, int depth, bool isMaximizingPlayer, int alpha, int beta);
 
 class MetodyAI
