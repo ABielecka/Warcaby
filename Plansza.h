@@ -16,7 +16,7 @@ enum Color {
 	BLACK
 };
 
-//Trzemane kordynaty ruchu (pole pocz¹tkowe x1,y1 i koñcowe x2,y2
+//Trzymane koordynaty ruchu (pole poczatkowe x1,y1 i koÅ„cowe x2,y2
 struct Coords {
 	int x1{};
 	int y1{};
@@ -26,7 +26,7 @@ struct Coords {
 	bool operator!= (const Coords& B);
 };
 
-//Trzemane kordynaty wszystkich ruchów
+//Trzymane koordynaty wszystkich ruchÃ³w
 struct Move {
 	std::vector< Coords > coords;
 	Move() {}
@@ -58,13 +58,13 @@ public:
 	std::vector< Move > pobierzSekwencjeRuchow(Move move, Plansza b);
 	std::vector< Move > pobierzMozliweRuchy(Color kolor);
 	int sprawdzStanGry(Color gracz);
-	//pionki i królowe na krawêdzi odpowiednio 4, 14 punktów
-	//pionki i królowe poza krawedzi¹ odpowiednio 2, 8 punktów
+	//pionki i krÃ³lowe na krawÄ™dzi odpowiednio 4, 14 punktÃ³w
+	//pionki i krÃ³lowe poza krawedziÄ… odpowiednio 2, 8 punktÃ³w
 	int funkcjaOceniajacaKrawedziowa(int x, int y);
-	//Za ka¿dego pionka 2 punkty
-	//Za ka¿d¹ królow¹ 5 punktów
+	//Za kaÅ¼dego pionka 2 punkty
+	//Za kaÅ¼dÄ… krÃ³lowÄ… 5 punktÃ³w
 	int funkcjaOceniajacaPionkowa(int x, int y);
-	//Mo¿liwoœæ bicia 10 punktów
+	//MoÅ¼liwoÅ›Ä‡ bicia 10 punktÃ³w
 	int funkcjaOceniajacaCzyBicie(int x, int y);
 	int funkcjaOceniajacaPoziomy(int x, int y);
 	int funkcjaOceniajacaTrzyObszary(int x, int y);
